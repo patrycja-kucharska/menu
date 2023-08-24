@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_125928) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_154602) do
   create_table "entries", force: :cascade do |t|
     t.string "meal_type"
     t.date "date"
@@ -50,5 +50,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_125928) do
     t.string "category"
   end
 
+  create_table "shopping_list_entries", force: :cascade do |t|
+    t.integer "shopping_list_id", null: false
+    t.integer "ingredient_id", null: false
+    t.integer "multiplier", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shopping_list_id", "ingredient_id"], name: "index_shopping_list_ingredient_id", unique: true
+  end
+
+  create_table "shopping_lists", force: :cascade do |t|
+    t.date "date", null: false
+  end
+
   add_foreign_key "entries", "recipes"
+  add_foreign_key "shopping_list_entries", "shopping_lists"
+  add_foreign_key "shopping_list_entries", "ingredients"
+  add_foreign_key"ingredients", "products"
+  add_foreign_key"ingredients", "recipes"
+
 end
