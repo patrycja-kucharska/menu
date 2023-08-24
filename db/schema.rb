@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_125928) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
+    t.integer "quantity", null: false
     t.integer "product_id", null: false
     t.integer "recipe_id", null: false
     t.datetime "created_at", null: false
@@ -34,6 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_125928) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
+    t.string "unit", null: false
+    t.string "category", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_product_name", unique: true
@@ -41,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_125928) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
+    t.integer "portions", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category"
