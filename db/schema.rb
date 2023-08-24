@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_171536) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_125928) do
   create_table "entries", force: :cascade do |t|
     t.string "meal_type"
     t.date "date"
@@ -21,6 +21,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_171536) do
     t.boolean "pat_out", default: false
     t.index ["date", "meal_type"], name: "index_entries_on_date_and_meal_type", unique: true
     t.index ["recipe_id"], name: "index_entries_on_recipe_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.integer "product_id", null: false
+    t.integer "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_ingredient_on_recipe_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_product_name", unique: true
   end
 
   create_table "recipes", force: :cascade do |t|

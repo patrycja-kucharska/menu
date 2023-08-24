@@ -1,5 +1,5 @@
 <div>
   <% @recipes.each do |recipe| %>
-    <div> <%= recipe.name %> </div>
+    <div> <%= link_to recipe.name, recipe %> </div>
   <% end %>
 </div>

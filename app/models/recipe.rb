@@ -6,6 +6,7 @@ class Recipe < ApplicationRecord
   ]
 
   belongs_to :entry
+  has_many :ingredients
 
   validates :name, presence: true
 end
