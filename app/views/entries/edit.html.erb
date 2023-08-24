@@ -1,0 +1,15 @@
+<div> Day: <%= @entry.date %> - <%= @entry.meal_type %> - recipe:
+  <% if @entry.recipe_id.present? %> <%= @entry.recipe.name %> <% else %> - <% end %>
+  <%= form_with url: entry_path, method: :put do |f| %>
+
+    <%= f.label "Choose recipe" %>
+    <%= f.select :recipe_id, @recipes.collect { |r| [r.name, r.id]}, { selected: @entry.recipe_id }, { onchange: 'this.form.submit();' } %>
+
+    <%= f.label :max_out, "Max out?" %>
+    <%= f.check_box :max_out, { onchange: 'this.form.submit();', checked: @entry.max_out }, true, false %>
+
+    <%= f.label :pat_out, "Pat out?" %>
+    <%= f.check_box :pat_out, { onchange: 'this.form.submit();', checked: @entry.pat_out }, true, false %>
+
+  <% end %>
+</div>

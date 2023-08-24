@@ -1,0 +1,11 @@
+<div>
+  <% @entries.each do |entry| %>
+    <div> Day: <%= entry.date %> - <%= entry.meal_type %> - recipe:
+      <% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %>
+      <div>
+        <% if entry.max_out? %> [MO] <% elsif entry.pat_out? %> [PO] <% end %>
+      </div>
+      <%= button_to edit_entry_path(entry), method: :get do %> + <% end %>
+    </div>
+  <% end %>
+</div>
