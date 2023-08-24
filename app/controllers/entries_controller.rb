@@ -13,7 +13,7 @@ class EntriesController < ApplicationController
   end
 
   def update
-    @entry = Entry.update(params[:id], { recipe_id: params[:recipe_id], max_out: params[:max_out] == "true", pat_out: params[:pat_out] == "true" }.compact )
+    @entry = Entry.do_update(params[:id], params[:max_out], params[:pat_out], params[:recipe_id])
 
     redirect_to edit_entry_path
   end

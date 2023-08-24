@@ -16,5 +16,6 @@ entries = Entry.create([
                          {"meal_type": "lunch", date: (Date.today + 1).iso8601, recipe_id: recipes.second.id, max_out: true },
                          {"meal_type": "lunch", date: (Date.today + 5).iso8601, pat_out: true },
                          {"meal_type": "lunch", date: (Date.today + 2).iso8601},
-                         {"meal_type": "dinner", date: (Date.today + 1).iso8601, recipe_id: recipes.first.id }
+                         {"meal_type": "dinner", date: (Date.today + 1).iso8601, recipe_id: recipes.first.id },
+                         {"meal_type": "dinner", date: (Date.today + 1).iso8601, max_out: true, pat_out: true },
                        ])
