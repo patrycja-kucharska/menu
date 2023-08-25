@@ -1,12 +1,62 @@
-<div>
-  <% @entries.each do |entry| %>
-    <div> Day: <%= entry.date %> - <%= entry.meal_type %> - recipe:
-      <% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %>
-      <div>
-        <% if entry.max_out? %> [MO] <% end %>
-        <% if entry.pat_out? %> [PO] <% end %>
+<!--<div>-->
+  <%# @entries.each do |entry| %>
+<!--    <div> Day: <%#= entry.date %> - <%#= entry.meal_type %> - recipe:-->
+<!--      <%# if entry.recipe_id.present? %> <%#= entry.recipe.name %> <%# else %> - <%# end %>-->
+<!--      <div>-->
+<!--        <%# if entry.max_out? %> [MO] <%# end %>-->
+<!--        <%# if entry.pat_out? %> [PO] <%# end %>-->
+<!--      </div>-->
+<!--      <%#= button_to edit_entry_path(entry), method: :get do %> + <%# end %>-->
+<!--    </div>-->
+  <%# end %>
+<!--</div>-->
+
+
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+          <tr class="divide-x divide-gray-200">
+            <% week_days(@entries).each do |day| %>
+              <th scope="col" class="text-center text-sm font-semibold text-gray-900"> <%= day %> </th>
+            <% end %>
+<!--            <th scope="col" class="px-4 text-left text-sm font-semibold text-gray-900">Tuesday</th>-->
+<!--            <th scope="col" class="px-4 text-left text-sm font-semibold text-gray-900">Wednesday</th>-->
+<!--            <th scope="col" class="pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-0">Thursday</th>-->
+          </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+
+
+          <tr class="divide-x divide-gray-200">
+            <% get_lunches(@entries).each do |entry| %>
+
+            <td class="whitespace-nowrap py-4 pl-4 pr-4 text-center text-sm text-gray-500 sm:pl-0">
+              <% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %>
+            </td>
+<!--            <td class="whitespace-nowrap p-4 text-sm text-gray-500">Front-end Developer</td>-->
+<!--            <td class="whitespace-nowrap p-4 text-sm text-gray-500">lindsay.walton@example.com</td>-->
+<!--            <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0">Member</td>-->
+            <% end %>
+          </tr>
+
+          <tr class="divide-x divide-gray-200">
+            <% get_dinners(@entries).each do |entry| %>
+
+              <td class="whitespace-nowrap py-4 pl-4 pr-4 text-center text-sm text-gray-500 sm:pl-0">
+                <% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %>
+              </td>
+<!--              TODO: make columns equal width -->
+              <!--            <td class="whitespace-nowrap p-4 text-sm text-gray-500">Front-end Developer</td>-->
+              <!--            <td class="whitespace-nowrap p-4 text-sm text-gray-500">lindsay.walton@example.com</td>-->
+              <!--            <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-0">Member</td>-->
+            <% end %>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <%= button_to edit_entry_path(entry), method: :get do %> + <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

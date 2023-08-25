@@ -7,6 +7,14 @@ class Entry < ApplicationRecord
     Recipe.find recipe_id if recipe_id.present?
   end
 
+  def is_lunch?
+    self.meal_type == "lunch"
+  end
+
+  def is_dinner?
+    self.meal_type == "dinner"
+  end
+
   def self.do_update(id, max_out_val, pat_out_val, recipe_id)
     max_out = max_out_val == "true"
     pat_out = pat_out_val == "true"
