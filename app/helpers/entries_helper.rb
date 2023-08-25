@@ -1,7 +1,7 @@
 module EntriesHelper
 
   def week_days(entries)
-    entries.first.date.all_week.collect { |day| day.strftime("%A")}
+    entries.first.date.all_week
   end
 
   def get_lunches(entries)
@@ -10,6 +10,10 @@ module EntriesHelper
 
   def get_dinners(entries)
     entries.filter { |entry| entry.is_dinner? }
+  end
+
+  def badge_color(person_out)
+    person_out ? "fill-red-500" : "fill-green-500"
   end
 
 end
