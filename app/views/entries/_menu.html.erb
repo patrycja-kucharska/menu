@@ -1,0 +1,45 @@
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="table-fixed min-w-full divide-y divide-gray-300">
+          <thead>
+          <tr class="divide-x divide-gray-200">
+            <% week_days(entries).each do |date| %>
+              <th scope="col" class="text-center text-sm">
+                <div class="font-semibold text-gray-900"><%= date.strftime("%A") %></div>
+                <div class="font-semibold text-gray-500"><%= date %></div>
+              </th>
+            <% end %>
+          </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+          <tr class="divide-x divide-gray-200">
+            <% get_lunches(entries).each do |entry| %>
+              <td class="py-4 text-center text-sm text-gray-500 sm:pl-0">
+                <span><% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %></span>
+                <div>
+                  <span> <%= render "entries/person_out_badge", name: "Max", colour: badge_color(entry.max_out) %>  </span>
+                  <span> <%= render "entries/person_out_badge", name: "Pat", colour: badge_color(entry.pat_out) %>  </span>
+                </div>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr class="divide-x divide-gray-200">
+            <% get_dinners(entries).each do |entry| %>
+              <td class="py-4 text-center text-sm text-gray-500 sm:pl-0">
+                <span><% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %></span>
+                <div>
+                  <span> <%= render "entries/person_out_badge", name: "Max", colour: badge_color(entry.max_out) %>  </span>
+                  <span> <%= render "entries/person_out_badge", name: "Pat", colour: badge_color(entry.pat_out) %>  </span>
+                </div>
+              </td>
+            <% end %>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,12 +4,15 @@ class EntriesController < ApplicationController
 
   def index
     @entries = Entry.get_days(SHOW_DAYS)
+
+    @recipes = Recipe.all
   end
 
   def edit
-    @entry = Entry.find(params[:id])
-
-    @recipes = Recipe.where(category: @entry.meal_type)
+    render partial: "recipes/search"
+    # @entry = Entry.find(params[:id])
+    #
+    # @recipes = Recipe.where(category: @entry.meal_type)
   end
 
   def update
