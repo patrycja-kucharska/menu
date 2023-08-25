@@ -1,7 +1,7 @@
 module EntriesHelper
 
   def week_days(entries)
-    entries.first.date.all_week
+    entries.first.date..entries.first.date + 6
   end
 
   def get_lunches(entries)
