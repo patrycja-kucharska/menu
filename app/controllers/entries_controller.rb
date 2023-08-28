@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
   def index
     @entries = Entry.get_days(SHOW_DAYS)
 
-    @recipes = Recipe.all
+    @recipes = Recipe.search(params)
   end
 
   def edit
