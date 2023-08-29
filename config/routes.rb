@@ -3,9 +3,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "entries#index"
+
+  resources :entries do
+    put "presence", to: "entries#update_presence"
+  end
 
   resources :recipes
 
-  resources :entries
 
 end

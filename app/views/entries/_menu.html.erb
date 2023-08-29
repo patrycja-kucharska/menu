@@ -19,8 +19,7 @@
               <td class="py-4 text-center text-sm text-gray-500 sm:pl-0">
                 <span><% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %></span>
                 <div>
-                  <span> <%= render "entries/person_out_badge", name: "Max", colour: badge_color(entry.max_out) %>  </span>
-                  <span> <%= render "entries/person_out_badge", name: "Pat", colour: badge_color(entry.pat_out) %>  </span>
+                  <div><%= render "entries/person_out_badge", entry: entry %></div>
                 </div>
               </td>
             <% end %>
@@ -30,10 +29,7 @@
             <% get_dinners(entries).each do |entry| %>
               <td class="py-4 text-center text-sm text-gray-500 sm:pl-0">
                 <span><% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %></span>
-                <div>
-                  <span> <%= render "entries/person_out_badge", name: "Max", colour: badge_color(entry.max_out) %>  </span>
-                  <span> <%= render "entries/person_out_badge", name: "Pat", colour: badge_color(entry.pat_out) %>  </span>
-                </div>
+                <div><%= render "entries/person_out_badge", entry: entry %></div>
               </td>
             <% end %>
           </tr>

@@ -8,17 +8,22 @@ class EntriesController < ApplicationController
     @recipes = Recipe.search(params)
   end
 
-  def edit
-    render partial: "recipes/search"
-    # @entry = Entry.find(params[:id])
-    #
-    # @recipes = Recipe.where(category: @entry.meal_type)
+  # def update
+  #   @entry = Entry.do_update(params[:id], params[:max_out], params[:pat_out], params[:recipe_id])
+  #
+  #   render :partial => "entries/person_out_badge", locals: { entry: @entry }
+  # end
+
+  def update_presence
+    @entry = Entry.do_update(entry_params)
+
+    render :partial => "entries/person_out_badge", locals: { entry: @entry }
   end
 
-  def update
-    @entry = Entry.do_update(params[:id], params[:max_out], params[:pat_out], params[:recipe_id])
+  private
 
-    redirect_to edit_entry_path
+  def entry_params
+    params.permit(:entry_id, :max_out, :pat_out, :recipe_id)
   end
 
 end

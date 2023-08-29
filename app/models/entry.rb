@@ -15,13 +15,11 @@ class Entry < ApplicationRecord
     self.meal_type == "dinner"
   end
 
-  def self.do_update(id, max_out_val, pat_out_val, recipe_id)
-    max_out = max_out_val == "true"
-    pat_out = pat_out_val == "true"
-    if max_out && pat_out
-      recipe_id = nil
-    end
-    update(id, { recipe_id: recipe_id, max_out: max_out, pat_out: pat_out })
+  def self.do_update(args)
+    max_out = args[:max_out] == "true"
+    pat_out = args[:pat_out] == "true"
+    recipe_id = max_out && pat_out ? nil : args[:recipe_id]
+    update(args[:entry_id], { recipe_id: recipe_id, max_out: max_out, pat_out: pat_out })
   end
 
   def self.get_days(number_of_days)
