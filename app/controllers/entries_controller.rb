@@ -15,7 +15,7 @@ class EntriesController < ApplicationController
   end
 
   def update_recipe
-    @entry = Entry.update_recipe(entry_params)
+    @entry = Entry.update_recipe(params[:entry_id], params[:recipe_id])
 
     render json: { message: "Success" }
   end

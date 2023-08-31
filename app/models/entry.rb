@@ -1,7 +1,15 @@
 class Entry < ApplicationRecord
-  has_one :recipe
+  include ActionView::RecordIdentifier
 
+  has_one :recipe
   attr_reader :recipe
+
+
+  after_update_commit -> {
+    broadcast_replace_later_to "recipe_change",
+                               target: "#{dom_id(self)}_entry",
+                               partial: "entries/recipe_badge"
+  }
 
   def recipe
     Recipe.find recipe_id if recipe_id.present?
@@ -21,9 +29,9 @@ class Entry < ApplicationRecord
     update(args[:entry_id], { max_out: max_out, pat_out: pat_out })
   end
 
-  def self.update_recipe(args)
+  def self.update_recipe(entry_id, recipe_id)
     # recipe_id = max_out && pat_out ? nil : args[:recipe_id]
-    update(args[:entry_id], { recipe_id: args[:recipe_id] })
+    update(entry_id, { recipe_id: recipe_id })
   end
 
   def self.get_days(number_of_days)

@@ -1,4 +1,5 @@
 <div class="px-4 sm:px-6 lg:px-8">
+  <%= turbo_stream_from "recipe_change" %>
   <div class="mt-8 flow-root">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -14,25 +15,8 @@
           </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white">
-          <tr class="divide-x divide-gray-200">
-            <% get_lunches(entries).each do |entry| %>
-              <td class="py-4 text-center text-sm text-gray-500 sm:pl-0" data-controller="drop-recipes" data-index=<%= entry.id %>>
-                <span><%= render "entries/recipe_badge", entry: entry %></span>
-                <div><%= render "entries/person_out_badge", entry: entry %></div>
-              </td>
-            <% end %>
-          </tr>
-
-          <tr class="divide-x divide-gray-200">
-            <% get_dinners(entries).each do |entry| %>
-              <%#= turbo_stream_from "recipe_change" %>
-              <td class="py-4 text-center text-sm text-gray-500 sm:pl-0" data-controller="drop-recipes" data-index=<%= entry.id %>>
-                <span><% if entry.recipe_id.present? %> <%= entry.recipe.name %> <% else %> - <% end %></span>
-                <div><%= render "entries/person_out_badge", entry: entry %></div>
-              </td>
-
-            <% end %>
-          </tr>
+            <%= render "entries/entry_cell", entries: get_lunches(entries) %>
+            <%= render "entries/entry_cell", entries: get_dinners(entries) %>
           </tbody>
         </table>
       </div>
