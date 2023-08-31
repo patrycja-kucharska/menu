@@ -1,0 +1,8 @@
+
+  <%= turbo_frame_tag dom_id(entry), "recipe_id" do %>
+    <% if entry.recipe_id.present? %>
+      <%= entry.recipe.name %>
+    <% else %>
+      -
+    <% end %>
+  <% end %>

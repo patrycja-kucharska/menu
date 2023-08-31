@@ -19,7 +19,7 @@
       <li class="flex justify-between gap-x-6 py-5">
         <div class="flex min-w-0 gap-x-4">
           <div class="min-w-0 flex-auto">
-            <p class="text-sm font-semibold leading-6 text-gray-900"> <%= recipe.name %> </p>
+            <p class="text-sm font-semibold leading-6 text-gray-900" data-controller="drag-recipes" draggable="true" data-index=<%= recipe.id %>> <%= recipe.name %> </p>
             <span class="text-sm font-normal leading-2 text-gray-500"><%= link_to "Show recipe", recipe %></span>
           </div>
         </div>

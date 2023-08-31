@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :entries do
     put "presence", to: "entries#update_presence"
+    put "recipe", to: "entries#update_recipe"
   end
 
   resources :recipes
