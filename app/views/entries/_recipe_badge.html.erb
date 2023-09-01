@@ -1,9 +1,29 @@
-<div data-controller="drop-recipes" data-index=<%= entry.id %> class="m-2" >
-  <%= tag.div id: "#{dom_id(entry)}_entry" do %>
+<%= tag.div id: "#{dom_id(entry)}_entry" do %>
+
+  <div data-controller="drop-recipes" data-index=<%= entry.id %> class="m-2">
     <% if entry.recipe_id.present? %>
       <%= entry.recipe.name %>
     <% else %>
       -
     <% end %>
+  </div>
+
+  <%= button_to entry_presence_path(entry), method: "put", params: { "pat_out": !entry.pat_out } do %>
+    <span class="inline-flex items-center gap-x-1.5 rounded-md px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200">
+      <svg class="h-1.5 w-1.5 <%= badge_color(entry.pat_out) %>" viewBox="0 0 6 6" aria-hidden="true">
+        <circle cx="3" cy="3" r="3"/>
+      </svg>
+      Pat
+    </span>
   <% end %>
-</div>
+
+  <%= button_to entry_presence_path(entry), method: "put", params: { "max_out": !entry.max_out } do %>
+    <span class="inline-flex items-center gap-x-1.5 rounded-md px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200">
+      <svg class="h-1.5 w-1.5 <%= badge_color(entry.max_out) %>" viewBox="0 0 6 6" aria-hidden="true">
+        <circle cx="3" cy="3" r="3"/>
+      </svg>
+      Max
+    </span>
+  <% end %>
+
+<% end %>

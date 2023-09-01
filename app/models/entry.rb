@@ -24,14 +24,25 @@ class Entry < ApplicationRecord
   end
 
   def self.update_presence(args)
-    max_out = args[:max_out] == "true"
-    pat_out = args[:pat_out] == "true"
-    update(args[:entry_id], { max_out: max_out, pat_out: pat_out })
+    attrs_to_update = {}
+    if args[:max_out] == "true"
+      attrs_to_update[:max_out] = true
+    elsif args[:max_out] == "false"
+      attrs_to_update[:max_out] = false
+    end
+
+    if args[:pat_out] == "true"
+      attrs_to_update[:pat_out] = true
+    elsif args[:pat_out] == "false"
+      attrs_to_update[:pat_out] = false
+    end
+
+    update(args[:entry_id], attrs_to_update)
   end
 
-  def self.update_recipe(entry_id, recipe_id)
+  def self.update_recipe(args)
     # recipe_id = max_out && pat_out ? nil : args[:recipe_id]
-    update(entry_id, { recipe_id: recipe_id })
+    update(args[:entry_id], { recipe_id: args[:recipe_id] })
   end
 
   def self.get_days(number_of_days)

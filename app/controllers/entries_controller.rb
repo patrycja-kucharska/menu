@@ -11,11 +11,11 @@ class EntriesController < ApplicationController
   def update_presence
     @entry = Entry.update_presence(entry_params)
 
-    render :partial => "entries/person_out_badge", locals: { entry: @entry }
+    render json: { message: "Success" }
   end
 
   def update_recipe
-    @entry = Entry.update_recipe(params[:entry_id], params[:recipe_id])
+    @entry = Entry.update_recipe(entry_params)
 
     render json: { message: "Success" }
   end
