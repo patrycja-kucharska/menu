@@ -1,10 +1,29 @@
-<div>
-  <h1><%= @recipe.name %></h1>
-  <h2> Portions: <%= @recipe.portions %> </h2>
-  <h3> Ingredients: </h3>
-  <ul>
-    <% @ingredients.each do |ingredient| %>
-    <li> <%= ingredient.quantity_unit %> - <%= ingredient.name %> </li>
-    <% end %>
-  </ul>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-3xl">
+    <div class="px-4 sm:px-0">
+      <h2 class="text-base font-semibold leading-7 text-gray-900"><%= @recipe.name %></h2>
+    </div>
+    <div class="mt-6">
+      <dl class="grid grid-cols-1">
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">Portions:</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @recipe.portions %></dd>
+        </div>
+        <div class="border-t border-gray-300 px-4 py-6 sm:col-span-1 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">Ingredients:</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
+            <div class="overflow-hidden rounded-md border border-gray-300 bg-white">
+              <ul role="list" class="divide-y divide-gray-300">
+                <% @ingredients.each do |ingredient| %>
+                  <li class="px-6 py-4">
+                    <%= ingredient.quantity_unit %> - <%= ingredient.name %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
 </div>
