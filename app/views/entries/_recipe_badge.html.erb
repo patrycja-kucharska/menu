@@ -1,4 +1,4 @@
-<div data-controller="drop-recipes" data-index=<%= entry.id %>>
+<div data-controller="drop-recipes" data-index=<%= entry.id %> class="m-2" >
   <%= tag.div id: "#{dom_id(entry)}_entry" do %>
     <% if entry.recipe_id.present? %>
       <%= entry.recipe.name %>
