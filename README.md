@@ -7,9 +7,3 @@ Run application
 
 Dependencies
 - foreman
-
-
-
-
-
-
